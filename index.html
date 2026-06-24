@@ -10,9 +10,8 @@ body{
   margin:0;
   background: radial-gradient(circle at top, #0d0d0d, #000);
   color:#d4af37;
-  font-family:Georgia, serif;
+  font-family:Georgia;
   text-align:center;
-  overflow-x:hidden;
 }
 
 /* intro */
@@ -27,88 +26,32 @@ body{
   z-index:999;
 }
 
-#intro button{
-  padding:15px 30px;
-  background:#d4af37;
-  border:none;
-  border-radius:30px;
-  cursor:pointer;
-  font-size:18px;
-}
-
-/* glow */
-.glow{
-  position:absolute;
-  width:200px;
-  height:200px;
-  background:radial-gradient(circle, rgba(212,175,55,0.25), transparent);
-  border-radius:50%;
-  animation:float 6s infinite ease-in-out;
-}
-
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(50px);}
-  100%{transform:translateY(0);}
-}
-
-/* hero */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-}
-
-h1{
-  font-size:60px;
-  text-shadow:0 0 20px rgba(212,175,55,0.4);
-}
-
-p{
-  max-width:700px;
-  padding:20px;
-  font-size:18px;
-  line-height:1.7;
-}
-
 button{
   padding:15px 30px;
   background:#d4af37;
-  color:black;
   border:none;
   border-radius:30px;
   cursor:pointer;
   margin:10px;
 }
 
-/* gallery */
-.gallery{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:10px;
-  padding:40px;
+h1{font-size:60px;}
+
+.hero{
+  padding-top:120px;
 }
 
 .gallery img{
-  width:200px;
-  border-radius:12px;
+  width:180px;
+  margin:5px;
   border:2px solid #d4af37;
-  transition:0.3s;
+  border-radius:10px;
 }
 
-.gallery img:hover{
-  transform:scale(1.1);
-}
-
-/* video */
 video{
-  margin-top:30px;
+  width:300px;
+  margin-top:20px;
   border:2px solid #d4af37;
-  border-radius:12px;
 }
 </style>
 </head>
@@ -122,56 +65,71 @@ video{
 </div>
 
 <!-- MÜZİK -->
-<audio id="bgMusic" loop>
+<audio id="muzik" loop>
   <source src="muzik.mp3" type="audio/mpeg">
 </audio>
 
-<div class="glow" style="top:10%; left:20%;"></div>
-<div class="glow" style="top:60%; left:70%;"></div>
-
-<!-- HERO -->
 <div class="hero">
-  <h1>İyi ki Doğdun Ezikko ✨</h1>
 
-  <p>
-    25 Haziran senin günün.<br>
-    Bu site sadece sana özel hazırlandı ❤️
-  </p>
+<h1>İyi ki Doğdun Ezikko ✨</h1>
 
-  <button onclick="mesaj()">Sürpriz</button>
-  <button onclick="muzik()">🎵 Müzik</button>
+<div id="sayac"></div>
 
-  <div id="yazi" style="display:none; font-size:24px; margin-top:20px;">
-    Seni çok seviyorum ❤️
-  </div>
+<button onclick="muzikCal()">🎵 Müzik</button>
+<button onclick="mesaj()">Sürpriz</button>
 
-  <!-- VİDEO -->
-  <video width="300" controls>
-    <source src="video.mp4" type="video/mp4">
-  </video>
+<div id="msg" style="display:none;font-size:24px;">
+Seni çok seviyorum ❤️
 </div>
 
-<!-- FOTO GALERİ -->
+<br>
+
+<video controls>
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+</div>
+
+<!-- GALERİ (4 FOTOĞRAF) -->
 <div class="gallery">
-  <img src="foto1.jpg">
-  <img src="foto2.jpg">
-  <img src="foto3.jpg">
-  <img src="foto4.jpg">
-  <img src="foto5.jpg">
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
+<img src="foto4.jpg">
 </div>
 
 <script>
+
+// intro kapat
 function basla(){
   document.getElementById("intro").style.display="none";
 }
 
-function muzik(){
-  document.getElementById("bgMusic").play();
+// müzik
+function muzikCal(){
+  document.getElementById("muzik").play();
 }
 
+// mesaj
 function mesaj(){
-  document.getElementById("yazi").style.display="block";
+  document.getElementById("msg").style.display="block";
 }
+
+// sayaç (28 Nisan 2026)
+const baslangic = new Date("2026-04-28");
+
+function guncelle(){
+  const simdi = new Date();
+  const fark = simdi - baslangic;
+  const gun = Math.floor(fark / (1000*60*60*24));
+
+  document.getElementById("sayac").innerText =
+    "❤️ Birlikte " + gun + " gündür";
+}
+
+setInterval(guncelle, 1000);
+guncelle();
+
 </script>
 
 </body>
