@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İyi ki Doğdun Ezikko</title>
+
+<style>
+body{
+  margin:0;
+  background: radial-gradient(circle at top, #0d0d0d, #000);
+  color:#d4af37;
+  font-family:Georgia, serif;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* intro */
+#intro{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+#intro button{
+  padding:15px 30px;
+  background:#d4af37;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:18px;
+}
+
+/* glow */
+.glow{
+  position:absolute;
+  width:200px;
+  height:200px;
+  background:radial-gradient(circle, rgba(212,175,55,0.25), transparent);
+  border-radius:50%;
+  animation:float 6s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(50px);}
+  100%{transform:translateY(0);}
+}
+
+/* hero */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+h1{
+  font-size:60px;
+  text-shadow:0 0 20px rgba(212,175,55,0.4);
+}
+
+p{
+  max-width:700px;
+  padding:20px;
+  font-size:18px;
+  line-height:1.7;
+}
+
+button{
+  padding:15px 30px;
+  background:#d4af37;
+  color:black;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  margin:10px;
+}
+
+/* gallery */
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  padding:40px;
+}
+
+.gallery img{
+  width:200px;
+  border-radius:12px;
+  border:2px solid #d4af37;
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.1);
+}
+
+/* video */
+video{
+  margin-top:30px;
+  border:2px solid #d4af37;
+  border-radius:12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <h1>Hazır mısın? ❤️</h1>
+  <button onclick="basla()">Başla</button>
+</div>
+
+<!-- MÜZİK -->
+<audio id="bgMusic" loop>
+  <source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
+<div class="glow" style="top:10%; left:20%;"></div>
+<div class="glow" style="top:60%; left:70%;"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>İyi ki Doğdun Ezikko ✨</h1>
+
+  <p>
+    25 Haziran senin günün.<br>
+    Bu site sadece sana özel hazırlandı ❤️
+  </p>
+
+  <button onclick="mesaj()">Sürpriz</button>
+  <button onclick="muzik()">🎵 Müzik</button>
+
+  <div id="yazi" style="display:none; font-size:24px; margin-top:20px;">
+    Seni çok seviyorum ❤️
+  </div>
+
+  <!-- VİDEO -->
+  <video width="300" controls>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- FOTO GALERİ -->
+<div class="gallery">
+  <img src="foto1.jpg">
+  <img src="foto2.jpg">
+  <img src="foto3.jpg">
+  <img src="foto4.jpg">
+  <img src="foto5.jpg">
+</div>
+
+<script>
+function basla(){
+  document.getElementById("intro").style.display="none";
+}
+
+function muzik(){
+  document.getElementById("bgMusic").play();
+}
+
+function mesaj(){
+  document.getElementById("yazi").style.display="block";
+}
+</script>
+
+</body>
+</html>
